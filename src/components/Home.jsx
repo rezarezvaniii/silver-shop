@@ -25,7 +25,7 @@ const Home = () => {
   console.log(loadingpage)
 
   console.log(products)
-  const fetchListusers = async () => {
+  const fetchListProducts = async () => {
     setLoadingpage(true)
     // const url = `https://api.hexarz.com/v1/api/manage/admin/users/list?page=${first}` ;
     const config = {
@@ -56,7 +56,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    fetchListusers()
+    fetchListProducts()
   }, [pageApi])
 
 
@@ -155,17 +155,17 @@ const Home = () => {
                         <Skeleton className="rounded-t-xl" width={"100%"} height={230} variant="rectangular" />
 
                         <div className="px-2">
-                        <Skeleton variant="text" width={"60%"} sx={{ fontSize: '1.5rem' }} />
+                          <Skeleton variant="text" width={"60%"} sx={{ fontSize: '1.5rem' }} />
 
                         </div>
-                       
+
                         <div className="flex justify-between px-2">
                           <Skeleton variant="text" width={"40%"} sx={{ fontSize: '1.5rem' }} />
                           <Skeleton variant="text" width={"35%"} sx={{ fontSize: '1.5rem' }} />
 
                         </div>
                         <div className="px-2">
-                        <Skeleton variant="text" width={"40%"} sx={{ fontSize: '1.5rem' }} />
+                          <Skeleton variant="text" width={"40%"} sx={{ fontSize: '1.5rem' }} />
 
                         </div>
 
@@ -200,6 +200,7 @@ const Home = () => {
               <Pagination
                 variant="outlined" shape="rounded"
                 onChange={(e, value) => setPageApi(value)}
+                onClick={()=>window.scrollTo(0, 0)}
                 count={countpage}
                 renderItem={(item) => (
                   <PaginationItem

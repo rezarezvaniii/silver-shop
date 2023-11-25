@@ -18,10 +18,10 @@ function App() {
         <Header />
         <Routes>
           
+          <Route path="/home/:id" element={<ProductDetails />} />
           <Route path="/basket" element={<Basket />} />
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/home/:id" component={ProductDetails} />
 
         </Routes>
       </Router>
