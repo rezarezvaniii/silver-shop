@@ -2,9 +2,14 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 import DoneIcon from '@mui/icons-material/Done';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import GppGoodOutlinedIcon from '@mui/icons-material/GppGoodOutlined';
+import { addToCart } from './cartSlice';
+import { removeFromCart } from './cartSlice';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -59,9 +64,19 @@ const ProductDetails = () => {
   }, [])
 
 
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(detailsproduct));
+  };
+
+   const handleRemoveFromCart = (id) => {
+    dispatch(removeFromCart(id));
+  };
 
 
 
+  const buybasket = useSelector(state => state.cart)
 
 
   return (
@@ -175,7 +190,23 @@ const ProductDetails = () => {
 
                     </div>
 
-                    <button className='w-full mt-4 rounded-md bg-[#EF4056] text-white py-2'>افزودن به سبد خرید</button>
+
+                    {
+                      buybasket.filter(item=>item.id ==id).length < 1 ?
+
+                        <button onClick={handleAddToCart} className='w-full mt-4 rounded-md bg-[#EF4056] text-white py-2'>افزودن به سبد خرید</button>
+                        :
+                        <div className='w-full flex gap-4 mt-4'>
+
+                          <div className='w-20 h-10 rounded-md border-[1px] border-[#81858b]/[0.4] items-center justify-between  flex shadow-[0_2px_8px_0px_rgba(0,0,0,0.3)]'>
+                            <button onClick={handleAddToCart}><AddIcon color='success' /></button>
+                            <p>{buybasket.filter(item => item.id == id).length}</p>
+                            <button onClick={() => handleRemoveFromCart(id)}><DeleteIcon color='error' /></button>
+                          </div>
+                          <p className='w-2/4'>در سبد خرید شما وجود دارد</p>
+                        </div>
+                    }
+
 
                   </div>
                 </div>
@@ -258,8 +289,6 @@ const ProductDetails = () => {
               </div>
 
             </div>
-
-
 
 
 
