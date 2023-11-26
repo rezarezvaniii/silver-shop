@@ -6,10 +6,11 @@ import { NavLink } from "react-router-dom";
 import * as React from 'react';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
-import Stack from '@mui/material/Stack';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import Skeleton from '@mui/material/Skeleton';
+import Stack from '@mui/material/Stack';
+
+import LoadingHome from "./LoadingHome";
 
 
 
@@ -142,38 +143,7 @@ const Home = () => {
                 handleloading.map((item, index) =>
                 (
 
-                  <div className="w-[31%] flex justify-between flex-col mt-5  relative rounded-xl border-[1px] border-gray-400/[0.5]">
-
-                    <div className="w-full flex justify-end absolute">
-                      <Skeleton className="rounded-tl-xl rounded-br-xl" variant="rectangular" width={80} height={35} />
-
-                    </div>
-                    < div className="flex flex-col justify-between pb-6">
-
-                      <Stack spacing={1}>
-
-                        <Skeleton className="rounded-t-xl" width={"100%"} height={230} variant="rectangular" />
-
-                        <div className="px-2">
-                          <Skeleton variant="text" width={"60%"} sx={{ fontSize: '1.5rem' }} />
-
-                        </div>
-
-                        <div className="flex justify-between px-2">
-                          <Skeleton variant="text" width={"40%"} sx={{ fontSize: '1.5rem' }} />
-                          <Skeleton variant="text" width={"35%"} sx={{ fontSize: '1.5rem' }} />
-
-                        </div>
-                        <div className="px-2">
-                          <Skeleton variant="text" width={"40%"} sx={{ fontSize: '1.5rem' }} />
-
-                        </div>
-
-                      </Stack>
-
-                    </div>
-                  </div>
-
+                 <LoadingHome />
                 )
 
 
@@ -198,12 +168,16 @@ const Home = () => {
 
             <Stack spacing={2}>
               <Pagination
+              
                 variant="outlined" shape="rounded"
                 onChange={(e, value) => setPageApi(value)}
-                onClick={()=>window.scrollTo(0, 0)}
+                onClick={() => window.scrollTo(0, 0)}
                 count={countpage}
                 renderItem={(item) => (
                   <PaginationItem
+                  sx={{background:"#F01436" , color:"white"}}
+                  className="hover:text-black after:text-black before:text-black text-black"
+
                     slots={{ previous: ArrowForwardIcon, next: ArrowBackIcon }}
                     {...item}
                   />
