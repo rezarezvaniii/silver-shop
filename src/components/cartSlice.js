@@ -15,7 +15,6 @@ const cartSlice = createSlice({
       localStorage.setItem('cartState', JSON.stringify(state));
     },
     removeFromCart: (state, action) => {
-      console.log("this is a state  ",state)
       const updatedState = state.filter(item => item.id !== action.payload);
       // ذخیره مقدار updatedState در localStorage
       localStorage.setItem('cartState', JSON.stringify(updatedState));

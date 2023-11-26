@@ -23,9 +23,7 @@ const Home = () => {
   const [handleloading, setHandleloading] = useState([1, 2, 3, 4, 5, 6])
 
 
-  console.log(loadingpage)
 
-  console.log(products)
   const fetchListProducts = async () => {
     setLoadingpage(true)
     // const url = `https://api.hexarz.com/v1/api/manage/admin/users/list?page=${first}` ;
@@ -142,8 +140,9 @@ const Home = () => {
                 ) :
                 handleloading.map((item, index) =>
                 (
+                 
+                    <LoadingHome key={index}/>
 
-                 <LoadingHome />
                 )
 
 

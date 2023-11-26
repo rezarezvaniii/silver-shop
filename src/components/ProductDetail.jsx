@@ -31,8 +31,6 @@ const ProductDetails = () => {
     window.scrollTo(0, 0); // صفحه را به بالا اسکرول کنید
   };
 
-  console.log("idhandlenifnds", idhandling)
-
 
   const fetchListProduct = async () => {
 
@@ -293,8 +291,8 @@ const ProductDetails = () => {
 
                 <div className=' w-full'>
                   {activeTab === 0 && (
-                    <div className='w-9/12 flex pb-10'>
-                      <div className='w-2/12 mt-10 flex flex-col justify-between text-lg'>
+                    <div className='w-9/12 max-[950px]:w-full flex pb-10'>
+                      <div className='w-2/12 max-[600px]:w-3/12 mt-10 flex flex-col justify-between text-lg'>
                         <p>مشخصات</p>
                         <button onClick={() => setMoredetails(!moredetails)} className='text-red-400  w-fit'>
                           {
@@ -306,7 +304,7 @@ const ProductDetails = () => {
 
                         </button>
                       </div>
-                      <div className='w-2/12 mt-14 '>
+                      <div className='w-2/12 max-[600px]:w-4/12 mt-14 '>
                         {
                           moredetails ?
                             detailsproduct.group.attributes.map((item, index) => (

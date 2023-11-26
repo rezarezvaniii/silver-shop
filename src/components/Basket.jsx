@@ -24,7 +24,6 @@ const Basket = () => {
 
 
   const buybasket = useSelector(state => state.cart)
-  console.log(buybasket)
 
 
   const gobuybasket = buybasket.reduce((acc, curr) => {
@@ -37,7 +36,6 @@ const Basket = () => {
     return acc;
   }, []);
 
-  console.log(gobuybasket)
 
 
 
@@ -59,7 +57,6 @@ const Basket = () => {
 
   const handleRemoveFromCart = (id) => {
     dispatch(removeFromCart(id));
-    console.log("this si  a id :", id)
   };
 
   const sendingBasketProduct = async () => {
@@ -75,7 +72,6 @@ const Basket = () => {
     try {
       const response = await axios(config);
       console.log(response)
-      console.log("succsess")
 
 
     } catch (error) {
