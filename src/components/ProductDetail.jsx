@@ -13,25 +13,24 @@ import AddIcon from '@mui/icons-material/Add';
 
 const ProductDetails = () => {
   const { id } = useParams();
-  console.log(id)
   const [detailsproduct, setDetailsproduct] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [imagehandler, setImagehandler] = useState(0)
   const [moredetails, setMoredetails] = useState(false)
-
-  console.log(detailsproduct)
-
+  const [idhandling , setIdhandling] = useState(0)
+  
   const [activeTab, setActiveTab] = useState(0);
-
-
-
-
+  
+  
+  
+  
   const handleTabClick = (index) => {
     setActiveTab(index);
     window.scrollTo(0, 0); // صفحه را به بالا اسکرول کنید
   };
-
-
+  
+  console.log("idhandlenifnds",idhandling)
+  
 
   const fetchListProduct = async () => {
 
@@ -48,6 +47,7 @@ const ProductDetails = () => {
       const response = await axios(config);
 
       setDetailsproduct(response.data.results.product)
+      setIdhandling(response.data.results.product.id)
       setIsLoading(false)
 
 
@@ -70,10 +70,10 @@ const ProductDetails = () => {
     dispatch(addToCart(detailsproduct));
   };
 
-   const handleRemoveFromCart = (id) => {
-    dispatch(removeFromCart(id));
+  const handleRemoveFromCart = () => {
+    dispatch(removeFromCart(idhandling));
+    // console.log("this is a id : ",id)
   };
-
 
 
   const buybasket = useSelector(state => state.cart)
@@ -192,7 +192,7 @@ const ProductDetails = () => {
 
 
                     {
-                      buybasket.filter(item=>item.id ==id).length < 1 ?
+                      buybasket.filter(item => item.id == id).length < 1 ?
 
                         <button onClick={handleAddToCart} className='w-full mt-4 rounded-md bg-[#EF4056] text-white py-2'>افزودن به سبد خرید</button>
                         :
@@ -201,7 +201,7 @@ const ProductDetails = () => {
                           <div className='w-20 h-10 rounded-md border-[1px] border-[#81858b]/[0.4] items-center justify-between  flex shadow-[0_2px_8px_0px_rgba(0,0,0,0.3)]'>
                             <button onClick={handleAddToCart}><AddIcon color='success' /></button>
                             <p>{buybasket.filter(item => item.id == id).length}</p>
-                            <button onClick={() => handleRemoveFromCart(id)}><DeleteIcon color='error' /></button>
+                            <button onClick={handleRemoveFromCart}><DeleteIcon color='error' /></button>
                           </div>
                           <p className='w-2/4'>در سبد خرید شما وجود دارد</p>
                         </div>

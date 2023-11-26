@@ -68,9 +68,9 @@ const Home = () => {
 
   return (
     <>
-      <div className="flex mt-10">
-        <div className="w-3/12 h-96">
-          <div className="flex justify-between px-6">
+      <div className="flex mt-10 gap-5 px-[50px] ">
+        <div className="w-3/12 max-[1000px]:w-0  max-[1000px]:hidden h-96">
+          <div className="flex justify-between ">
             <p className="">فیلتر ها</p>
             <p className="text-[#f01436]"> حذف فیلتر ها</p>
           </div>
@@ -79,8 +79,8 @@ const Home = () => {
 
 
 
-        <div className="w-9/12  h-96 pe-[50px] ps-4">
-          <div className="w-full px-5 bg-[#F5F5F5] h-20 rounded-xl flex items-center ">
+        <div className="w-9/12 max-[1000px]:w-full  h-96 ">
+          <div className="w-full  bg-[#F5F5F5] h-20 rounded-xl flex items-center ps-4">
             <p className="text-[#8A8A8A]">مرتب سازی بر اساس:</p>
 
 
@@ -97,7 +97,7 @@ const Home = () => {
               products && loadingpage == false ?
                 products.map((item, index) =>
                 (
-                  <NavLink to={`/home/${item.id}`} key={index} className="w-[31%] flex justify-between mt-5 flex-col pb-2 relative rounded-xl border-[1px] border-gray-400/[0.5]">
+                  <NavLink to={`/home/${item.id}`} key={index} className="w-[31%] max-[780px]:w-[47%] max-[550px]:w-full  flex justify-between mt-5 flex-col pb-2 relative rounded-xl border-[1px] border-gray-400/[0.5]">
 
                     {
                       item.full_price.discount_percent ?
