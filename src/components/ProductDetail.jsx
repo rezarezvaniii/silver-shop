@@ -85,7 +85,7 @@ const ProductDetails = () => {
 
         isLoading ?
 
-        <LoadingProduct />
+          <LoadingProduct />
 
 
           :
@@ -115,11 +115,27 @@ const ProductDetails = () => {
                   :
                   <div className='w-full flex gap-4 mt-4 justify-evenly items-center'>
 
-                    <div className='w-20 h-10 rounded-md border-[1px] border-[#81858b]/[0.4] items-center justify-between  flex shadow-[0_2px_8px_0px_rgba(0,0,0,0.3)]'>
-                      <button onClick={handleAddToCart}><AddIcon color='success' /></button>
-                      <p>{buybasket.filter(item => item.id == id).length}</p>
-                      <button onClick={handleRemoveFromCart}><DeleteIcon color='error' /></button>
+                    <div className='w-24 h-11 rounded-lg border-[1px] border-[#81858b]/[0.4] items-center justify-between  flex shadow-[0_2px_8px_0px_rgba(0,0,0,0.1)]'>
+                      <button onClick={handleAddToCart}><AddIcon style={{ color: "#ef4056" }} /></button>
+                      <p className='text-[#ef4056]'>{buybasket.filter(item => item.id == id).length}</p>
+                      <button onClick={handleRemoveFromCart}><DeleteIcon style={{ color: "#ef4056" }} /></button>
                     </div>
+
+
+                    {
+                      detailsproduct.full_price.discount_percent ?
+                        <div className='flex justify-end gap-1 '>
+                          <p className='text-[#c0c2c5] line-through'>{detailsproduct.full_price.sale_price.toLocaleString()}</p>
+                          <div>
+                            <p className='flex items-center justify-center rounded-full px-2 funt-bold text-white  bg-[#D32F2F]'>
+                              {detailsproduct.full_price.discount_percent}٪
+
+                            </p>
+                          </div>
+                        </div>
+                        :
+                        null
+                    }
 
 
 
@@ -161,13 +177,14 @@ const ProductDetails = () => {
                   <div className='flex gap-4 w-full mt-5 px-2 justify-center '>
                     {
                       detailsproduct.images.slice(0, 5).map((item, index) => (
-                        <div key={index} onClick={() => setImagehandler(item.path)} className={`${imagehandler == item.path ? "border-2 border-gray-600/[0.3]" : ""} w-20 h-20 rounded-xl cursor-pointer bg-blue-300`}>
+                        <div key={index} onClick={() => setImagehandler(item.path)} className={`${imagehandler == item.path ? "border-2 border-gray-600/[0.3]" : ""} w-20 h-20 rounded-lg cursor-pointer`}>
                           <img className='rounded-xl w-full h-full' src={item.path} alt="" />
                         </div>
 
                       ))
 
                     }
+
                   </div>
 
                 </div>
@@ -257,14 +274,14 @@ const ProductDetails = () => {
 
                           <button onClick={handleAddToCart} className='w-full mt-4 rounded-md bg-[#EF4056] text-white py-2'>افزودن به سبد خرید</button>
                           :
-                          <div className='w-full flex gap-4 mt-4'>
+                          <div className='w-full items-center flex gap-4 mt-4'>
 
-                            <div className='w-20 h-10 rounded-md border-[1px] border-[#81858b]/[0.4] items-center justify-between  flex shadow-[0_2px_8px_0px_rgba(0,0,0,0.3)]'>
-                              <button onClick={handleAddToCart}><AddIcon color='success' /></button>
-                              <p>{buybasket.filter(item => item.id == id).length}</p>
-                              <button onClick={handleRemoveFromCart}><DeleteIcon color='error' /></button>
+                            <div className='w-24 h-11 rounded-lg border-[1px] border-[#81858b]/[0.4] items-center justify-between  flex shadow-[0_2px_8px_0px_rgba(0,0,0,0.1)]'>
+                              <button onClick={handleAddToCart}><AddIcon style={{ color: "#ef4056" }} /></button>
+                              <p className='text-[#ef4056]'>{buybasket.filter(item => item.id == id).length}</p>
+                              <button onClick={handleRemoveFromCart}><DeleteIcon style={{ color: "#ef4056" }} /></button>
                             </div>
-                            <p className='w-2/4'>در سبد خرید شما وجود دارد</p>
+                            <p className='w-2/4'>در سبد خرید شما</p>
                           </div>
                       }
 
@@ -291,18 +308,10 @@ const ProductDetails = () => {
 
                 <div className=' w-full'>
                   {activeTab === 0 && (
-                    <div className='w-9/12 max-[950px]:w-full flex pb-10'>
+                    <div className='w-9/12 max-[950px]:w-full flex pb-10 '>
                       <div className='w-2/12 max-[600px]:w-3/12 mt-10 flex flex-col justify-between text-lg'>
                         <p>مشخصات</p>
-                        <button onClick={() => setMoredetails(!moredetails)} className='text-red-400  w-fit'>
-                          {
-                            moredetails ?
-                              "کمتر"
-                              :
-                              "بیشتر"
-                          }
 
-                        </button>
                       </div>
                       <div className='w-2/12 max-[600px]:w-4/12 mt-14 '>
                         {
@@ -318,6 +327,16 @@ const ProductDetails = () => {
                             ))
 
                         }
+
+                        <button onClick={() => setMoredetails(!moredetails)} className='text-red-400 mt-5 w-fit'>
+                          {
+                            moredetails ?
+                              "کمتر"
+                              :
+                              "بیشتر"
+                          }
+
+                        </button>
                       </div>
 
                       <div className='w-8/12 mt-14 '>

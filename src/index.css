@@ -5,6 +5,8 @@
 body {
   direction: rtl;
   @apply font-yekan;
+  max-width: 1500px;
+  margin: 0 auto;
 }
 @font-face {
   font-family: "yekan";

@@ -11,17 +11,12 @@ import axios from 'axios';
 const Basket = () => {
 
 
-
-
   const [activeTab, setActiveTab] = useState(0);
-
-
 
   const handleTabClick = (index) => {
     setActiveTab(index);
     window.scrollTo(0, 0); // صفحه را به بالا اسکرول کنید
   };
-
 
   const buybasket = useSelector(state => state.cart)
 
@@ -35,10 +30,6 @@ const Basket = () => {
     }
     return acc;
   }, []);
-
-
-
-
 
 
   const totalPrice = buybasket.reduce((sum, product) => sum + product.full_price.sale_price, 0);
@@ -109,10 +100,12 @@ const Basket = () => {
                   <div key={index} className='flex max-[450px]:flex-col  gap-2 w-full p-4 border-b-[1px] border-[#81858b]/0.4 '>
                     <div className='w-3/12 max-[1025px]:w-4/12 max-[450px]:w-full max-[650px]:w-5/12 flex items-center flex-col gap-4'>
                       <img className='w-3/4 rounded-lg' src={item.cover} alt="" />
-                      <div className='w-20 h-10 rounded-md border-[1px] border-[#81858b]/[0.4] items-center justify-between flex shadow-[0_2px_8px_0px_rgba(0,0,0,0.3)]'>
-                        <button onClick={() => handleAddToCart(item)}><AddIcon color='success' /></button>
-                        <p>{buybasket.filter(e => e.id == item.id).length}</p>
-                        <button onClick={() => handleRemoveFromCart(item.id)}><DeleteIcon color='error' /></button>
+                      <div className='w-24 h-11 rounded-lg border-[1px] border-[#81858b]/[0.4] items-center justify-between  flex shadow-[0_2px_8px_0px_rgba(0,0,0,0.1)]'>
+
+                        <button onClick={() => handleAddToCart(item)}><AddIcon style={{ color: "#ef4056" }} /></button>
+                        <p className='text-[#ef4056]'>{buybasket.filter(e => e.id == item.id).length}</p>
+                        <button onClick={() => handleRemoveFromCart(item.id)}><DeleteIcon style={{ color: "#ef4056" }} /></button>
+
                       </div>
                     </div>
 
@@ -128,10 +121,6 @@ const Basket = () => {
                   </div>
                 ))
             }
-
-
-
-
 
           </div>
 

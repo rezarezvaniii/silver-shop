@@ -23,7 +23,6 @@ const Home = () => {
   const [handleloading, setHandleloading] = useState([1, 2, 3, 4, 5, 6])
 
 
-
   const fetchListProducts = async () => {
     setLoadingpage(true)
     // const url = `https://api.hexarz.com/v1/api/manage/admin/users/list?page=${first}` ;
@@ -60,11 +59,6 @@ const Home = () => {
 
 
 
-
-
-
-
-
   return (
     <>
       <div className="flex mt-10 gap-5 px-[50px] ">
@@ -73,25 +67,22 @@ const Home = () => {
             <p className="">فیلتر ها</p>
             <p className="text-[#f01436]"> حذف فیلتر ها</p>
           </div>
+          <p className="mt-10 text-[#8A8A8A]">
+            فیلتری وجود ندارد
+          </p>
 
         </div>
 
-
-
         <div className="w-9/12 max-[1000px]:w-full  h-96 ">
-          <div className="w-full  bg-[#F5F5F5] h-20 rounded-xl flex items-center ps-4">
+          <div className="w-full  bg-[#F5F5F5] h-20 rounded-xl flex gap-20 items-center ps-4">
             <p className="text-[#8A8A8A]">مرتب سازی بر اساس:</p>
-
-
+            <p>محصولات</p>
 
           </div>
 
           <div className="flex gap-5 mt-8 flex-wrap justify-between">
 
-
             {
-
-
 
               products && loadingpage == false ?
                 products.map((item, index) =>
@@ -140,26 +131,14 @@ const Home = () => {
                 ) :
                 handleloading.map((item, index) =>
                 (
-                 
-                    <LoadingHome key={index}/>
+
+                  <LoadingHome key={index} />
 
                 )
-
-
-
                 )
-
-
             }
 
-
-
-
-
           </div>
-
-
-
 
           <div className="py-10 w-full flex justify-center">
 
@@ -167,15 +146,15 @@ const Home = () => {
 
             <Stack spacing={2}>
               <Pagination
-              
+
                 variant="outlined" shape="rounded"
                 onChange={(e, value) => setPageApi(value)}
                 onClick={() => window.scrollTo(0, 0)}
                 count={countpage}
                 renderItem={(item) => (
                   <PaginationItem
-                  sx={{background:"#F01436" , color:"white"}}
-                  className="hover:text-black after:text-black before:text-black text-black"
+                    sx={{ background: "#F01436", color: "white" }}
+                    className="hover:text-black after:text-black before:text-black text-black"
 
                     slots={{ previous: ArrowForwardIcon, next: ArrowBackIcon }}
                     {...item}
@@ -185,16 +164,6 @@ const Home = () => {
             </Stack>
 
           </div>
-
-
-
-
-
-
-
-
-
-
 
 
         </div>
